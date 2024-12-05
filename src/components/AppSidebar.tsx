@@ -28,13 +28,12 @@ const menuItems: MenuItem[] = [
     title: "Dashboard",
     icon: LayoutDashboard,
     items: [
-      { title: "Analytics", href: "/dashboard/analytics" },
-      {
-        title: "Reports",
+      { title: "Analytics", href: "/crm/dashboard/analytics" },
+      { title: "Reports",
         items: [
-          { title: "Daily", href: "/dashboard/reports/daily" },
-          { title: "Weekly", href: "/dashboard/reports/weekly" },
-          { title: "Monthly", href: "/dashboard/reports/weekly" },
+          { title: "Daily", href: "/crm/dashboard/reports/daily" },
+          { title: "Weekly", href: "/crm/dashboard/reports/weekly" },
+          { title: "Monthly", href: "/crm/dashboard/reports/monthly" },
         ],
       },
     ],
@@ -42,7 +41,7 @@ const menuItems: MenuItem[] = [
   {
     title: "Company Master",
     icon: Contact,
-    href: "/companymaster"
+    href: "/crm/companymaster"
   },
   {
     title: "Deal Management",

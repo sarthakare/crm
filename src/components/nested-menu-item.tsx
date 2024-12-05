@@ -2,6 +2,7 @@
 
 import React from "react";
 import { ChevronDown, Circle, Square, Triangle } from "lucide-react"; // Additional icons for levels
+import { usePathname } from "next/navigation"; // For active path detection in Next.js
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { SidebarMenuItem, SidebarMenuButton } from "@/components/ui/sidebar";
 import { cn } from "@/lib/utils";
@@ -24,6 +25,10 @@ const levelIcons = [
 export function NestedMenuItem({ item, level }: NestedMenuItemProps) {
   const [isOpen, setIsOpen] = React.useState(false);
   const hasSubItems = item.items && item.items.length > 0;
+  const pathname = usePathname(); // Get current path in Next.js
+
+  // Check if the menu item is active
+  const isActive = pathname === item.href;
 
   const getPaddingClass = (level: number) => `pl-${4 + level * 4}`;
   const Icon = level === 0 ? item.icon : levelIcons[level] || ChevronDown; // Use item.icon for level 0
@@ -32,7 +37,11 @@ export function NestedMenuItem({ item, level }: NestedMenuItemProps) {
     return (
       <SidebarMenuItem>
         <SidebarMenuButton
-          className={cn("w-full justify-start", getPaddingClass(level))}
+          className={cn(
+            "w-full justify-start",
+            getPaddingClass(level),
+            isActive && "bg-blue-500 text-white" // Active styles
+          )}
           asChild
         >
           <a href={item.href}>
@@ -48,7 +57,13 @@ export function NestedMenuItem({ item, level }: NestedMenuItemProps) {
     <Collapsible open={isOpen} onOpenChange={setIsOpen}>
       <CollapsibleTrigger asChild>
         <SidebarMenuItem>
-          <SidebarMenuButton className={cn("w-full justify-between", getPaddingClass(level))}>
+          <SidebarMenuButton
+            className={cn(
+              "w-full justify-between",
+              getPaddingClass(level),
+              isActive && "bg-blue-500 text-white" // Active styles
+            )}
+          >
             <span className="flex items-center">
               {Icon && <Icon className="mr-2 h-4 w-4 flex-shrink-0" />}
               {item.title}
