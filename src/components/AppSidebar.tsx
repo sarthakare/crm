@@ -21,6 +21,7 @@ import {
 } from "@/components/ui/sidebar";
 import { MenuItem } from "@/types/menu";
 import { NestedMenuItem } from "./nested-menu-item";
+import Image from "next/image";
 
 const menuItems: MenuItem[] = [
   {
@@ -33,13 +34,7 @@ const menuItems: MenuItem[] = [
         items: [
           { title: "Daily", href: "/dashboard/reports/daily" },
           { title: "Weekly", href: "/dashboard/reports/weekly" },
-          {
-            title: "Monthly",
-            items: [
-              { title: "Revenue", href: "/dashboard/reports/monthly/revenue" },
-              { title: "Users", href: "/dashboard/reports/monthly/users" },
-            ],
-          },
+          { title: "Monthly", href: "/dashboard/reports/weekly" },
         ],
       },
     ],
@@ -47,10 +42,7 @@ const menuItems: MenuItem[] = [
   {
     title: "Company Master",
     icon: Contact,
-    items: [
-      { title: "Company Master 1", href: "/users" },
-      { title: "Company Master 2", href: "/users/add" },
-    ],
+    href: "/companymaster"
   },
   {
     title: "Deal Management",
@@ -88,17 +80,14 @@ const menuItems: MenuItem[] = [
     title: "Reporting System",
     icon: ClipboardList,
     items: [
-      { title: "General", href: "/settings/general" },
+      { title: "General",  href: "/settings/general" },
       { title: "Security", href: "/settings/security" },
     ],
   },
   {
     title: "Preferences",
     icon: SlidersVertical,
-    items: [
-      { title: "General", href: "/settings/general" },
-      { title: "Security", href: "/settings/security" },
-    ],
+    href: "/settings/general",
   },
 ];
 
@@ -108,6 +97,12 @@ export function AppSidebar() {
       <SidebarContent>
         <SidebarGroup>
           <SidebarGroupLabel>
+            <Image
+              src="/images/logo.png"
+              alt="logo of the website"
+              width={50}
+              height={50}
+            />
             <b>CRM</b>
           </SidebarGroupLabel>
           <SidebarGroupContent>

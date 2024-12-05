@@ -1,44 +1,56 @@
-"use client"
+"use client";
 
-import React from "react"
-import { ChevronDown } from 'lucide-react'
-import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible"
-import { SidebarMenuItem, SidebarMenuButton } from "@/components/ui/sidebar"
-import { cn } from "@/lib/utils"
-import { MenuItem } from "@/types/menu"
+import React from "react";
+import { ChevronDown, Circle, Square, Triangle } from "lucide-react"; // Additional icons for levels
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
+import { SidebarMenuItem, SidebarMenuButton } from "@/components/ui/sidebar";
+import { cn } from "@/lib/utils";
+import { MenuItem } from "@/types/menu";
 
 interface NestedMenuItemProps {
-  item: MenuItem
-  level: number
+  item: MenuItem;
+  level: number;
 }
 
+// Map icons for levels starting from level 1
+const levelIcons = [
+  null,      // Level 0: use `item.icon`
+  Circle,    // Level 1
+  Square,    // Level 2
+  Triangle,  // Level 3
+  ChevronDown // Fallback for deeper levels
+];
+
 export function NestedMenuItem({ item, level }: NestedMenuItemProps) {
-  const [isOpen, setIsOpen] = React.useState(false)
-  const hasSubItems = item.items && item.items.length > 0
+  const [isOpen, setIsOpen] = React.useState(false);
+  const hasSubItems = item.items && item.items.length > 0;
+
+  const getPaddingClass = (level: number) => `pl-${4 + level * 4}`;
+  const Icon = level === 0 ? item.icon : levelIcons[level] || ChevronDown; // Use item.icon for level 0
 
   if (!hasSubItems) {
     return (
       <SidebarMenuItem>
         <SidebarMenuButton
-          className={cn("w-full justify-start", level > 0 && `pl-${6 + level * 4}`)}
+          className={cn("w-full justify-start", getPaddingClass(level))}
           asChild
         >
           <a href={item.href}>
-            {item.icon && <item.icon className="mr-2 h-4 w-4" />}
+            {Icon && <Icon className="mr-2 h-4 w-4 flex-shrink-0" />}
             {item.title}
           </a>
         </SidebarMenuButton>
       </SidebarMenuItem>
-    )
+    );
   }
 
   return (
     <Collapsible open={isOpen} onOpenChange={setIsOpen}>
       <CollapsibleTrigger asChild>
         <SidebarMenuItem>
-          <SidebarMenuButton className={cn("w-full justify-between", level > 0 && `pl-${6 + level * 4}`)}>
+          <SidebarMenuButton className={cn("w-full justify-between", getPaddingClass(level))}>
             <span className="flex items-center">
-              {item.icon && <item.icon className="mr-2 h-5 w-5" />}
+              {Icon && <Icon className="mr-2 h-4 w-4 flex-shrink-0" />}
               {item.title}
             </span>
             <ChevronDown
@@ -50,12 +62,13 @@ export function NestedMenuItem({ item, level }: NestedMenuItemProps) {
           </SidebarMenuButton>
         </SidebarMenuItem>
       </CollapsibleTrigger>
-      <CollapsibleContent className="space-y-1">
-        {item.items?.map((subItem, index) => (
-          <NestedMenuItem key={index} item={subItem} level={level + 1} />
-        ))}
+      <CollapsibleContent>
+        <div className={getPaddingClass(level)}>
+          {item.items?.map((subItem, index) => (
+            <NestedMenuItem key={index} item={subItem} level={level + 1} />
+          ))}
+        </div>
       </CollapsibleContent>
     </Collapsible>
-  )
+  );
 }
-
