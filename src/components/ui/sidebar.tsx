@@ -221,15 +221,15 @@ const Sidebar = React.forwardRef<
         data-variant={variant}
         data-side={side}
       >
-        {/* This is what handles the sidebar gap on desktop */}
+        {/* Handles the sidebar gap on desktop */}
         <div
           className={cn(
             "duration-200 relative h-svh w-[--sidebar-width] bg-transparent transition-[width] ease-linear",
             "group-data-[collapsible=offcanvas]:w-0",
             "group-data-[side=right]:rotate-180",
             variant === "floating" || variant === "inset"
-              ? "group-data-[collapsible=icon]:w-[calc(var(--sidebar-width-icon)_+_theme(spacing.4))]"
-              : "group-data-[collapsible=icon]:w-[--sidebar-width-icon]"
+              ? "group-data-[collapsible=icon]:w-[calc(var(--sidebar-width-icon)_+_theme(spacing.8))]" // Increased size
+              : "group-data-[collapsible=icon]:w-[calc(var(--sidebar-width-icon)_+_16px)]" // Increased size
           )}
         />
         <div
@@ -240,22 +240,22 @@ const Sidebar = React.forwardRef<
               : "right-0 group-data-[collapsible=offcanvas]:right-[calc(var(--sidebar-width)*-1)]",
             // Adjust the padding for floating and inset variants.
             variant === "floating" || variant === "inset"
-              ? "p-2 group-data-[collapsible=icon]:w-[calc(var(--sidebar-width-icon)_+_theme(spacing.4)_+2px)]"
-              : "group-data-[collapsible=icon]:w-[--sidebar-width-icon] group-data-[side=left]:border-r group-data-[side=right]:border-l",
+              ? "p-2 group-data-[collapsible=icon]:w-[calc(var(--sidebar-width-icon)_+_theme(spacing.8)_+4px)]" // Increased size
+              : "group-data-[collapsible=icon]:w-[calc(var(--sidebar-width-icon)_+_16px)] group-data-[side=left]:border-r group-data-[side=right]:border-l",
             className
           )}
           {...props}
         >
           <div
             data-sidebar="sidebar"
-            className="flex h-full w-full flex-col bg-sidebar group-data-[variant=floating]:rounded-lg group-data-[variant=floating]:border group-data-[variant=floating]:border-sidebar-border group-data-[variant=floating]:shadow"
+            className="flex h-full w-full flex-col bg-[#2e3951] group-data-[variant=floating]:rounded-lg group-data-[variant=floating]:border group-data-[variant=floating]:border-sidebar-border group-data-[variant=floating]:shadow"
           >
             {children}
           </div>
         </div>
       </div>
-    )
-  }
+    );
+  }      
 )
 Sidebar.displayName = "Sidebar"
 
@@ -271,7 +271,7 @@ const SidebarTrigger = React.forwardRef<
       data-sidebar="trigger"
       variant="ghost"
       size="icon"
-      className={cn("h-10 w-10", className)}
+      className={cn("h-10 w-10 mt-2", className)}
       onClick={(event) => {
         onClick?.(event)
         toggleSidebar()
@@ -432,23 +432,24 @@ const SidebarGroupLabel = React.forwardRef<
   HTMLDivElement,
   React.ComponentProps<"div"> & { asChild?: boolean }
 >(({ className, asChild = false, ...props }, ref) => {
-  const Comp = asChild ? Slot : "div"
+  const Comp = asChild ? Slot : "div";
 
   return (
     <Comp
       ref={ref}
       data-sidebar="group-label"
       className={cn(
-        "duration-200 flex pt-5 pb-5 shrink-0 items-center justify-center text-2xl font-large text-white bg-[#0275d8] outline-none ring-sidebar-ring transition-[margin,opa] ease-linear focus-visible:ring-2 [&>svg]:size-4 [&>svg]:shrink-0",
-        "group-data-[collapsible=icon]:-mt-8 group-data-[collapsible=icon]:opacity-0",
+        "duration-200 flex pt-3 pb-3 shrink-0 items-center justify-center text-2xl font-large text-white bg-[#0275d8] outline-none ring-sidebar-ring transition-[margin,opa] ease-linear focus-visible:ring-2 [&>svg]:size-4 [&>svg]:shrink-0",
+        // Adjusted styles for collapsible state
+        "group-data-[collapsible=icon]:pt-3 group-data-[collapsible=icon]:pb-3 group-data-[collapsible=icon]:opacity-100 group-data-[collapsible=icon]:text-md group-data-[collapsible=icon]:items-start",
         className
       )}
-      
       {...props}
     />
-  )
-})
-SidebarGroupLabel.displayName = "SidebarGroupLabel"
+  );
+});
+SidebarGroupLabel.displayName = "SidebarGroupLabel";
+
 
 const SidebarGroupAction = React.forwardRef<
   HTMLButtonElement,
@@ -493,7 +494,8 @@ const SidebarMenu = React.forwardRef<
   <ul
     ref={ref}
     data-sidebar="menu"
-    className={cn("flex w-full min-w-0 flex-col gap-0.5 bg-black", className)}
+    // gap for menus
+    className={cn("flex w-full min-w-0 flex-col", className)} 
     {...props}
   />
 ))

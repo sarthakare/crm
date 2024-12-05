@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import {
   Menubar,
@@ -10,10 +11,14 @@ import {
 import { Bell, ChevronDown, Mail } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 
-
 const Header = () => {
+  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+
+  const handleMenuToggle = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
   return (
-    <div>
     <Menubar>
       <MenubarMenu>
         <MenubarTrigger>
@@ -33,33 +38,30 @@ const Header = () => {
       </MenubarMenu>
 
       <MenubarMenu>
-        <MenubarTrigger>
+        <MenubarTrigger onClick={handleMenuToggle}>
           <Avatar>
             <AvatarImage src="https://github.com/shadcn.png" />
             <AvatarFallback>RM</AvatarFallback>
           </Avatar>
-        </MenubarTrigger>
-      </MenubarMenu>
-
-      <MenubarMenu>
-        <MenubarTrigger>Mr. Raj Malhotra</MenubarTrigger>
-      </MenubarMenu>
-
-      <MenubarMenu>
-        <MenubarTrigger>
-        <ChevronDown />
+          &nbsp; Mr. Raj Malhotra &nbsp;
+          <ChevronDown
+            size={"15px"}
+            className={`transition-transform duration-300 ${
+              isMenuOpen ? "rotate-180" : "rotate-0"
+            }`}
+          />
         </MenubarTrigger>
         <MenubarContent>
           <MenubarItem>Profile</MenubarItem>
           <MenubarSeparator />
           <MenubarItem>Settings</MenubarItem>
           <MenubarSeparator />
-          <MenubarItem><b>Log Out</b></MenubarItem>
+          <MenubarItem>
+            <b>Log Out</b>
+          </MenubarItem>
         </MenubarContent>
       </MenubarMenu>
-
     </Menubar>
-    </div>
   );
 };
 

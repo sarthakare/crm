@@ -38,7 +38,7 @@ export function NestedMenuItem({ item, level }: NestedMenuItemProps) {
         <SidebarMenuItem>
           <SidebarMenuButton className={cn("w-full justify-between", level > 0 && `pl-${6 + level * 4}`)}>
             <span className="flex items-center">
-              {item.icon && <item.icon className="mr-2 h-4 w-4" />}
+              {item.icon && <item.icon className="mr-2 h-5 w-5" />}
               {item.title}
             </span>
             <ChevronDown
