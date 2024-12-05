@@ -8,8 +8,8 @@ import React from "react";
 
 const page = () => {
   return (
-    <main className="h-full w-full flex justify-center items-center">
-      <ScrollArea className="h-[80vh] w-[80vw]">
+    <main className="h-full w-full flex justify-center items-center ml-10">
+      <ScrollArea className="h-[80vh] w-[75vw]">
         <Card>
           <CardHeader>
             <CardTitle>Company Master</CardTitle>

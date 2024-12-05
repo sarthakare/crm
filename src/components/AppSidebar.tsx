@@ -1,4 +1,5 @@
-import { LayoutDashboard, Handshake, User, ScrollText, Building2, SlidersVertical, ClipboardList,} from "lucide-react"
+"use client";
+import { LayoutDashboard, Handshake, User, ScrollText, Building2, SlidersVertical, ClipboardList, ChevronDown, LucideIcon, Contact,} from "lucide-react"
 
 import {
   Sidebar,
@@ -10,68 +11,136 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar"
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "./ui/collapsible"
+import React from "react"
+import { cn } from "@/lib/utils"
 
 // Menu items.
-const items = [
+interface MenuItem {
+  title: string
+  icon: LucideIcon
+  items?: { title: string; href: string }[]
+}
+
+const menuItems: MenuItem[] = [
   {
-    title: "Dashboard",
-    url: "#",
-    icon: LayoutDashboard ,
+    title: 'Dashboard',
+    icon: LayoutDashboard,
+    items: [
+      { title: 'Analytics', href: '/dashboard/analytics' },
+      { title: 'Reports', href: '/dashboard/reports' },
+    ],
   },
   {
-    title: "Deal Management",
-    url: "#",
+    title: 'Company Master',
+    icon: Contact ,
+    items: [
+      { title: 'Company Master 1', href: '/users' },
+      { title: 'Company Master 2', href: '/users/add' },
+    ],
+  },
+  {
+    title: 'Deal Management',
     icon: Handshake,
+    items: [
+      { title: 'General', href: '/settings/general' },
+      { title: 'Security', href: '/settings/security' },
+    ],
   },
   {
-    title: "Visitor Management",
-    url: "#",
+    title: 'Visitor Management',
     icon: User,
+    items: [
+      { title: 'General', href: '/settings/general' },
+      { title: 'Security', href: '/settings/security' },
+    ],
   },
   {
-    title: "Arrangement Management",
-    url: "#",
+    title: 'Arrangement Management',
     icon: ScrollText,
+    items: [
+      { title: 'General', href: '/settings/general' },
+      { title: 'Security', href: '/settings/security' },
+    ],
   },
   {
-    title: "Property Management",
-    url: "#",
+    title: 'Property Management',
     icon: Building2,
+    items: [
+      { title: 'General', href: '/settings/general' },
+      { title: 'Security', href: '/settings/security' },
+    ],
   },
   {
-    title: "Reporting System",
-    url: "#",
-    icon: ClipboardList ,
+    title: 'Reporting System',
+    icon: ClipboardList,
+    items: [
+      { title: 'General', href: '/settings/general' },
+      { title: 'Security', href: '/settings/security' },
+    ],
   },
   {
-    title: "Preferenses",
-    url: "#",
-    icon: SlidersVertical ,
+    title: 'Preferenses',
+    icon: SlidersVertical,
+    items: [
+      { title: 'General', href: '/settings/general' },
+      { title: 'Security', href: '/settings/security' },
+    ],
   },
 ]
 
 export function AppSidebar() {
   return (
-    <Sidebar collapsible="icon" className=" h-screen">
+    <Sidebar collapsible="icon">
       <SidebarContent>
         <SidebarGroup>
           <SidebarGroupLabel><b>CRM</b></SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
-              {items.map((item) => (
-                <SidebarMenuItem key={item.title}>
-                  <SidebarMenuButton asChild>
-                    <a href={item.url}>
-                      <item.icon />
-                      <span>{item.title}</span>
-                    </a>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
-              ))}
-            </SidebarMenu>
+            {menuItems.map((item, index) => (
+              <CollapsibleMenuItem key={index} item={item} />
+            ))}
+          </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
       </SidebarContent>
     </Sidebar>
+  )
+}
+
+function CollapsibleMenuItem({ item }: { item: MenuItem }) {
+  const [isOpen, setIsOpen] = React.useState(false)
+
+  return (
+    <Collapsible open={isOpen} onOpenChange={setIsOpen}>
+      <CollapsibleTrigger asChild>
+        <SidebarMenuItem>
+          <SidebarMenuButton className="w-full justify-between">
+            <span className="flex items-center">
+              <item.icon className="mr-2 h-4 w-4" />
+              {item.title}
+            </span>
+            <ChevronDown
+              className={cn(
+                "h-4 w-4 transition-transform duration-200",
+                isOpen ? "rotate-180" : ""
+              )}
+            />
+          </SidebarMenuButton>
+        </SidebarMenuItem>
+      </CollapsibleTrigger>
+      <CollapsibleContent className="space-y-1">
+        {item.items?.map((subItem, index) => (
+          <SidebarMenuItem key={index}>
+            <SidebarMenuButton
+              className="w-full justify-start pl-9"
+              asChild
+            >
+              <a href={subItem.href}>{subItem.title}</a>
+            </SidebarMenuButton>
+          </SidebarMenuItem>
+        ))}
+      </CollapsibleContent>
+    </Collapsible>
   )
 }
