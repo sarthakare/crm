@@ -1,15 +1,65 @@
+"use client";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { Building, CalendarDays, CircleUserRound, ClipboardPen, Globe, IdCard, Mail, MapPin, Phone, ReceiptText, Scroll, Smartphone } from "lucide-react";
+import {
+  Building,
+  CalendarDays,
+  CircleUserRound,
+  ClipboardPen,
+  Globe,
+  IdCard,
+  Mail,
+  MapPin,
+  Phone,
+  ReceiptText,
+  Scroll,
+  Smartphone,
+} from "lucide-react";
 
-import React from "react";
+import { useState, useEffect } from "react";
 
-const page = () => {
+const Page = () => {
+  const [sidebarState, setSidebarState] = useState<boolean>(true); // Default to true
+
+  useEffect(() => {
+    const getSidebarState = () => {
+      const cookieValue = document.cookie
+        .split("; ")
+        .find((cookie) => cookie.startsWith("sidebar:state="));
+      if (cookieValue) {
+        const state = cookieValue.split("=")[1];
+        return state === "true"; // Convert the string value to boolean
+      }
+      return true; // Default to true if no cookie is found
+    };
+
+    // Optional: Check for changes periodically
+    const intervalId = setInterval(() => {
+      const newSidebarState = getSidebarState();
+      if (newSidebarState !== sidebarState) {
+        setSidebarState(newSidebarState);
+      }
+    }, 1000);
+
+    // Cleanup on component unmount
+    return () => clearInterval(intervalId);
+  }, [sidebarState]);
+
   return (
-    <main className="h-full w-full flex justify-center items-center ml-10">
-      <ScrollArea className="h-[80vh] w-[75vw]">
+    <main
+      className={`h-full w-full flex justify-center items-center ml-10 ${
+        sidebarState === false ? "fullscreen" : ""
+      }`}
+    >
+      <ScrollArea
+        className={`${
+          sidebarState === true
+            ? "h-[80vh] w-[75vw] transition-all duration-100"
+            : "h-[80vh] w-[90vw] transition-all duration-100"
+        }`}
+      >
         <Card>
           <CardHeader>
             <CardTitle>Company Master</CardTitle>
@@ -42,14 +92,14 @@ const page = () => {
                 <div className="row-start-2">
                   <Label htmlFor="start-date">Company Start Date</Label>
                   <div className="flex justify-center items-center border rounded focus-within:border-blue-500 focus-within:ring-1 focus-within:ring-blue-500">
-                    <CalendarDays  className="ml-2" />
+                    <CalendarDays className="ml-2" />
                     <Input id="start-date" className="" required />
                   </div>
                 </div>
                 <div className="row-start-2">
                   <Label htmlFor="close-date">Company Close Date</Label>
                   <div className="flex justify-center items-center border rounded focus-within:border-blue-500 focus-within:ring-1 focus-within:ring-blue-500">
-                    <CalendarDays  className="ml-2" />
+                    <CalendarDays className="ml-2" />
                     <Input id="close-date" className="" required />
                   </div>
                 </div>
@@ -77,7 +127,8 @@ const page = () => {
                 </div>
                 <div className="col-start-2 row-start-2">
                   <Label htmlFor="district">
-                    District<span className="text-red-500 font-bold">*</span>
+                    District
+                    <span className="text-red-500 font-bold">*</span>
                   </Label>
                   <div className="flex justify-center items-center border rounded focus-within:border-blue-500 focus-within:ring-1 focus-within:ring-blue-500">
                     <MapPin className="ml-2" />
@@ -207,4 +258,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;
