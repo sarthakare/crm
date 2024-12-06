@@ -1,7 +1,8 @@
-import { AppSidebar } from "@/components/AppSidebar";
+// import { AppSidebar } from "@/components/AppSidebar";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
-import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar"
+import NewSidebar from "@/components/NewSidebar";
+import { SidebarProvider } from "@/components/ui/sidebar"
 
 export default function RootLayout({
   children,
@@ -11,10 +12,11 @@ export default function RootLayout({
   return (
     <div className="bg-[#dfdfdf]">
       <SidebarProvider>
-      <AppSidebar />
+      {/* <AppSidebar /> */}
+      <NewSidebar/>
       <main>
         <Header/>
-        <SidebarTrigger className="absolute z-1"/>
+        {/* <SidebarTrigger className="absolute z-1"/> */}
         {children}
         <Footer/>
       </main>
