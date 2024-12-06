@@ -99,8 +99,8 @@ export function AppSidebar() {
             <Image
               src="/images/logo.png"
               alt="logo of the website"
-              width={50}
-              height={50}
+              width={40}
+              height={40}
             />
             <b>CRM</b>
           </SidebarGroupLabel>

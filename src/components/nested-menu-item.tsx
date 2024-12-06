@@ -40,12 +40,12 @@ export function NestedMenuItem({ item, level }: NestedMenuItemProps) {
           className={cn(
             "w-full justify-start",
             getPaddingClass(level),
-            isActive && "bg-blue-500 text-white" // Active styles
+            isActive && "bg-[#495c7f] text-white" // Active styles
           )}
           asChild
         >
           <a href={item.href}>
-            {Icon && <Icon className="mr-2 h-4 w-4 flex-shrink-0" />}
+            {Icon && <Icon className="flex-shrink-0" />}
             {item.title}
           </a>
         </SidebarMenuButton>

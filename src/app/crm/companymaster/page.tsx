@@ -75,7 +75,7 @@ const Page = () => {
                     <span className="text-red-500 font-bold">*</span>
                   </Label>
                   <div className="flex justify-center items-center border rounded focus-within:border-blue-500 focus-within:ring-1 focus-within:ring-blue-500">
-                    <Building className="ml-2" />
+                    <Building className="ml-2" strokeWidth={1.5}/>
                     <Input
                       id="company-name"
                       placeholder="iOG Solutions"
@@ -89,7 +89,7 @@ const Page = () => {
                     <span className="text-red-500 font-bold">*</span>
                   </Label>
                   <div className="flex justify-center items-center border rounded focus-within:border-blue-500 focus-within:ring-1 focus-within:ring-blue-500">
-                    <CircleUserRound className="ml-2" />
+                    <CircleUserRound className="ml-2" strokeWidth={1.5} />
                     <Input
                       id="customer-short-name"
                       placeholder="Mr. Pankaj Zawar"
@@ -100,14 +100,14 @@ const Page = () => {
                 <div className="row-start-2">
                   <Label htmlFor="start-date">Company Start Date</Label>
                   <div className="flex justify-center items-center border rounded focus-within:border-blue-500 focus-within:ring-1 focus-within:ring-blue-500">
-                    <CalendarDays className="ml-2" />
+                    <CalendarDays className="ml-2" strokeWidth={1.5} />
                     <Input id="start-date" placeholder="01/01/2024" required />
                   </div>
                 </div>
                 <div className="row-start-2">
                   <Label htmlFor="close-date">Company Close Date</Label>
                   <div className="flex justify-center items-center border rounded focus-within:border-blue-500 focus-within:ring-1 focus-within:ring-blue-500">
-                    <CalendarDays className="ml-2" />
+                    <CalendarDays className="ml-2" strokeWidth={1.5} />
                     <Input id="close-date" placeholder="01/01/2025" required />
                   </div>
                 </div>
@@ -120,7 +120,7 @@ const Page = () => {
                     Address<span className="text-red-500 font-bold">*</span>
                   </Label>
                   <div className="flex justify-center items-center border rounded focus-within:border-blue-500 focus-within:ring-1 focus-within:ring-blue-500">
-                    <MapPin className="ml-2" />
+                    <MapPin className="ml-2" strokeWidth={1.5}/>
                     <Input
                       id="address"
                       placeholder="L402 Marvel Ritz (E), Behind Amanora Town Center, Hadapsar."
@@ -133,7 +133,7 @@ const Page = () => {
                     City<span className="text-red-500 font-bold">*</span>
                   </Label>
                   <div className="flex justify-center items-center border rounded focus-within:border-blue-500 focus-within:ring-1 focus-within:ring-blue-500">
-                    <MapPin className="ml-2" />
+                    <MapPin className="ml-2" strokeWidth={1.5}/>
                     <Input placeholder="Pune" required />
                   </div>
                 </div>
@@ -143,7 +143,7 @@ const Page = () => {
                     <span className="text-red-500 font-bold">*</span>
                   </Label>
                   <div className="flex justify-center items-center border rounded focus-within:border-blue-500 focus-within:ring-1 focus-within:ring-blue-500">
-                    <MapPin className="ml-2" />
+                    <MapPin className="ml-2" strokeWidth={1.5}/>
                     <Input id="district" placeholder="Pune" required />
                   </div>
                 </div>
@@ -152,7 +152,7 @@ const Page = () => {
                     State<span className="text-red-500 font-bold">*</span>
                   </Label>
                   <div className="flex justify-center items-center border rounded focus-within:border-blue-500 focus-within:ring-1 focus-within:ring-blue-500">
-                    <MapPin className="ml-2" />
+                    <MapPin className="ml-2" strokeWidth={1.5}/>
                     <Input id="state" placeholder="Maharashtra" required />
                   </div>
                 </div>
@@ -161,21 +161,21 @@ const Page = () => {
                     Country<span className="text-red-500 font-bold">*</span>
                   </Label>
                   <div className="flex justify-center items-center border rounded focus-within:border-blue-500 focus-within:ring-1 focus-within:ring-blue-500">
-                    <MapPin className="ml-2" />
+                    <MapPin className="ml-2" strokeWidth={1.5}/>
                     <Input id="country" placeholder="India" required />
                   </div>
                 </div>
                 <div className="row-start-3">
                   <Label htmlFor="pin">PIN</Label>
                   <div className="flex justify-center items-center border rounded focus-within:border-blue-500 focus-within:ring-1 focus-within:ring-blue-500">
-                    <MapPin className="ml-2" />
+                    <MapPin className="ml-2" strokeWidth={1.5} />
                     <Input id="pin" placeholder="411028" required />
                   </div>
                 </div>
                 <div className="col-start-2 row-start-3">
                   <Label htmlFor="landline1">Landline No 1</Label>
                   <div className="flex justify-center items-center border rounded focus-within:border-blue-500 focus-within:ring-1 focus-within:ring-blue-500">
-                    <Phone className="ml-2" />
+                    <Phone className="ml-2" strokeWidth={1.5}/>
                     <Input
                       id="landline1"
                       placeholder="020 6726 0381"
@@ -186,7 +186,7 @@ const Page = () => {
                 <div className="col-start-3 row-start-3">
                   <Label htmlFor="landline2">Landline No 2</Label>
                   <div className="flex justify-center items-center border rounded focus-within:border-blue-500 focus-within:ring-1 focus-within:ring-blue-500">
-                    <Phone className="ml-2" />
+                    <Phone className="ml-2" strokeWidth={1.5}/>
                     <Input
                       id="landline2"
                       placeholder="020 6726 0382"
@@ -197,7 +197,7 @@ const Page = () => {
                 <div className="col-start-4 row-start-3">
                   <Label htmlFor="mobile1">Mobile No 1</Label>
                   <div className="flex justify-center items-center border rounded focus-within:border-blue-500 focus-within:ring-1 focus-within:ring-blue-500">
-                    <Smartphone className="ml-2" />
+                    <Smartphone className="ml-2" strokeWidth={1.5}/>
                     <Input
                       id="mobile1"
                       placeholder="+91 99123 45678"
@@ -208,7 +208,7 @@ const Page = () => {
                 <div className="col-start-1 row-start-4">
                   <Label htmlFor="mobile2">Mobile No 2</Label>
                   <div className="flex justify-center items-center border rounded focus-within:border-blue-500 focus-within:ring-1 focus-within:ring-blue-500">
-                    <Smartphone className="ml-2" />
+                    <Smartphone className="ml-2" strokeWidth={1.5}/>
                     <Input
                       id="mobile2"
                       placeholder="+91 99123 45679"
@@ -219,7 +219,7 @@ const Page = () => {
                 <div className="row-start-4 col-span-2">
                   <Label htmlFor="email">Email ID</Label>
                   <div className="flex justify-center items-center border rounded focus-within:border-blue-500 focus-within:ring-1 focus-within:ring-blue-500">
-                    <Mail className="ml-2" />
+                    <Mail className="ml-2" strokeWidth={1.5}/>
                     <Input
                       id="email"
                       placeholder="contact@iogsolutions.com"
@@ -230,7 +230,7 @@ const Page = () => {
                 <div className="row-start-4">
                   <Label htmlFor="website">Web Site Address</Label>
                   <div className="flex justify-center items-center border rounded focus-within:border-blue-500 focus-within:ring-1 focus-within:ring-blue-500">
-                    <Globe className="ml-2" />
+                    <Globe className="ml-2" strokeWidth={1.5}/>
                     <Input
                       id="website"
                       placeholder="www.iogsolutions.com"
@@ -245,21 +245,21 @@ const Page = () => {
                 <div>
                   <Label htmlFor="pan">PAN</Label>
                   <div className="flex justify-center items-center border rounded focus-within:border-blue-500 focus-within:ring-1 focus-within:ring-blue-500">
-                    <IdCard className="ml-2" />
+                    <IdCard className="ml-2" strokeWidth={1.5} />
                     <Input id="pan" placeholder="AAAAA1234A" required />
                   </div>
                 </div>
                 <div>
                   <Label htmlFor="gstin">GSTIN</Label>
                   <div className="flex justify-center items-center border rounded focus-within:border-blue-500 focus-within:ring-1 focus-within:ring-blue-500">
-                    <ReceiptText className="ml-2" />
+                    <ReceiptText className="ml-2" strokeWidth={1.5}/>
                     <Input id="gstin" placeholder="2 AAAAA0000A 1Z5" required />
                   </div>
                 </div>
                 <div>
                   <Label htmlFor="gst-state-code">GST State Code</Label>
                   <div className="flex justify-center items-center border rounded focus-within:border-blue-500 focus-within:ring-1 focus-within:ring-blue-500">
-                    <Scroll className="ml-2" />
+                    <Scroll className="ml-2" strokeWidth={1.5}/>
                     <Input
                       id="gst-state-code"
                       placeholder="22 AAAAA0000A1Z5"
@@ -270,7 +270,7 @@ const Page = () => {
                 <div className="row-start-2">
                   <Label htmlFor="cin">CIN</Label>
                   <div className="flex justify-center items-center border rounded focus-within:border-blue-500 focus-within:ring-1 focus-within:ring-blue-500">
-                    <IdCard className="ml-2" />
+                    <IdCard className="ml-2" strokeWidth={1.5}/>
                     <Input
                       id="cin"
                       placeholder="U 67190 TN 2014 PTC 096978"
@@ -281,7 +281,7 @@ const Page = () => {
                 <div className="row-start-2 col-span-2">
                   <Label htmlFor="auth-signatory">Authorized Signatory</Label>
                   <div className="flex justify-center items-center border rounded focus-within:border-blue-500 focus-within:ring-1 focus-within:ring-blue-500">
-                    <ClipboardPen className="ml-2" />
+                    <ClipboardPen className="ml-2" strokeWidth={1.5}/>
                     <Input
                       id="auth-signatory"
                       placeholder="Pankaj Zawar"
