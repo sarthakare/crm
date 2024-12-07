@@ -23,7 +23,7 @@ const Page = () => {
   const {isClicked} = useButtonContext();
 
   return (
-    <main className="h-full w-full flex justify-center items-center ">
+    <main className="h-full w-full flex justify-center items-center">
       <ScrollArea className={`h-[80vh] ${isClicked ? 'w-[90vw]' : 'w-[80vw]'} duration-300`}>
         <Card>
           <CardHeader>
