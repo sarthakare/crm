@@ -23,46 +23,40 @@ const WeeklyReportPage = () => {
   }, []);
 
   return (
-    <div className="h-screen flex flex-col">
-      <main className="flex-grow flex justify-center items-center p-6">
-        <div className="w-full max-w-6xl">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
-            <div className="bg-white p-6 shadow-md rounded-lg">
-              <h2 className="text-xl font-semibold">Total Leads</h2>
-              <p className="text-3xl">
-                {data ? data.totalLeads : "Loading..."}
-              </p>
-            </div>
-
-            <div className="bg-white p-6 shadow-md rounded-lg">
-              <h2 className="text-xl font-semibold">Total Conversions</h2>
-              <p className="text-3xl">
-                {data ? data.totalConversions : "Loading..."}
-              </p>
-            </div>
-
-            <div className="bg-white p-6 shadow-md rounded-lg">
-              <h2 className="text-xl font-semibold">Active Users</h2>
-              <p className="text-3xl">
-                {data ? data.activeUsers : "Loading..."}
-              </p>
-            </div>
+    <main className="h-full w-full flex justify-center items-center">
+      <div className="w-full max-w-6xl">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+          <div className="bg-white p-6 shadow-md rounded-lg">
+            <h2 className="text-xl font-semibold">Total Leads</h2>
+            <p className="text-3xl">{data ? data.totalLeads : "Loading..."}</p>
           </div>
 
-          {/* Performance Chart */}
-          <div className="bg-white p-6 shadow-md rounded-lg mb-8">
-            <h2 className="text-xl font-semibold mb-4">Weekly Performance</h2>
-            <ul>
-              {data?.weeklyPerformance.map((value, index) => (
-                <li key={index} className="text-lg">
-                  Week {index + 1}: {value} leads
-                </li>
-              ))}
-            </ul>
+          <div className="bg-white p-6 shadow-md rounded-lg">
+            <h2 className="text-xl font-semibold">Total Conversions</h2>
+            <p className="text-3xl">
+              {data ? data.totalConversions : "Loading..."}
+            </p>
+          </div>
+
+          <div className="bg-white p-6 shadow-md rounded-lg">
+            <h2 className="text-xl font-semibold">Active Users</h2>
+            <p className="text-3xl">{data ? data.activeUsers : "Loading..."}</p>
           </div>
         </div>
-      </main>
-    </div>
+
+        {/* Performance Chart */}
+        <div className="bg-white p-6 shadow-md rounded-lg mb-8">
+          <h2 className="text-xl font-semibold mb-4">Weekly Performance</h2>
+          <ul>
+            {data?.weeklyPerformance.map((value, index) => (
+              <li key={index} className="text-lg">
+                Week {index + 1}: {value} leads
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </main>
   );
 };
 

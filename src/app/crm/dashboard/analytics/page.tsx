@@ -75,7 +75,7 @@ const AnalyticsPage = () => {
   };
 
   return (
-    <main className="h-full w-full flex justify-center items-center m-10">
+    <main className="h-full w-full flex justify-center items-center">
       <div className="grid grid-cols-2 grid-rows-1 gap-4">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6 mb-8">
           {/* Analytics Stats */}

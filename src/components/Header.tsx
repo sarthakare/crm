@@ -15,7 +15,7 @@ import { useButtonContext } from "@/context/ButtonContext";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
-  const { setIsClicked } = useButtonContext();
+  const { isClicked, setIsClicked } = useButtonContext();
 
   const handleMenuToggle = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -23,12 +23,12 @@ const Header = () => {
 
   return (
     <header>
-      <Menubar className="flex justify-between items-center right-0">
+      <Menubar className={`flex justify-between items-center h-[8vh] right-0 ${isClicked ? `left-[80px]` : `left-[250px]`} duration-300`}>
         {/* Left-aligned button */}
         <div>
           <div>
             <Button
-              variant={"outline"}
+              variant={"secondary"}
               className="bg-white text-black"
               onClick={() => setIsClicked((prev) => !prev)} // Toggle global state
             >

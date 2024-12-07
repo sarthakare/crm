@@ -10,6 +10,10 @@ import {
   SlidersVertical,
   ClipboardList,
   Contact,
+  ChartNoAxesCombined,
+  Calendar,
+  FolderLock,
+  Folder,
 } from "lucide-react";
 import { useButtonContext } from "@/context/ButtonContext";
 import Image from "next/image";
@@ -34,14 +38,15 @@ const NewSidebar = () => {
         {
           title: "Analytics",
           href: "/crm/dashboard/analytics",
-          icon: <Contact />,
+          icon: <ChartNoAxesCombined/>,
         },
         {
           title: "Reports",
+          icon:<ClipboardList/>,
           items: [
-            { title: "Daily", href: "/crm/dashboard/reports/daily" },
-            { title: "Weekly", href: "/crm/dashboard/reports/weekly" },
-            { title: "Monthly", href: "/crm/dashboard/reports/monthly" },
+            { title: "Daily", href: "/crm/dashboard/reports/daily",icon:<Calendar/> },
+            { title: "Weekly", href: "/crm/dashboard/reports/weekly",icon:<Calendar/> },
+            { title: "Monthly", href: "/crm/dashboard/reports/monthly",icon:<Calendar/> },
           ],
         },
       ],
@@ -55,40 +60,40 @@ const NewSidebar = () => {
       title: "Deal Management",
       icon: <Handshake />,
       items: [
-        { title: "General", href: "/deal/general" },
-        { title: "Security", href: "/deal/security" },
+        { title: "General", href: "/deal/general", icon:<Folder/>  },
+        { title: "Security", href: "/deal/security",icon:<FolderLock/>  },
       ],
     },
     {
       title: "Visitor Management",
       icon: <User />,
       items: [
-        { title: "General", href: "/visitor/general" },
-        { title: "Security", href: "/visitor/security" },
+        { title: "General", href: "/visitor/general", icon:<Folder/>  },
+        { title: "Security", href: "/visitor/security",icon:<FolderLock/> },
       ],
     },
     {
       title: "Arrangement Management",
       icon: <ScrollText />,
       items: [
-        { title: "General", href: "/arrangement/general" },
-        { title: "Security", href: "/arrangement/security" },
+        { title: "General", href: "/arrangement/general", icon:<Folder/>  },
+        { title: "Security", href: "/arrangement/security",icon:<FolderLock/> },
       ],
     },
     {
       title: "Property Management",
       icon: <Building2 />,
       items: [
-        { title: "General", href: "/property/general" },
-        { title: "Security", href: "/property/security" },
+        { title: "General", href: "/property/general", icon:<Folder/>  },
+        { title: "Security", href: "/property/security",icon:<FolderLock/> },
       ],
     },
     {
       title: "Reporting System",
       icon: <ClipboardList />,
       items: [
-        { title: "General", href: "/reporting/general" },
-        { title: "Security", href: "/reporting/security" },
+        { title: "General", href: "/reporting/general", icon:<Folder/>  },
+        { title: "Security", href: "/reporting/security",icon:<FolderLock/> },
       ],
     },
     {
@@ -143,7 +148,7 @@ const NewSidebar = () => {
           backgroundColor={"#2e3951"}
         >
           {/* Sidebar Header */}
-          <div className=" bg-[#0275d8] flex justify-center items-center pt-5 pb-5 text-white text-2xl">
+          <div className=" bg-[#0275d8] flex justify-center items-center h-[8vh] text-white text-2xl">
             <Image
               src="/images/logo.png"
               alt="logo of the website"
@@ -151,7 +156,7 @@ const NewSidebar = () => {
               height={40}
             />
             &nbsp;
-            { !isClicked && <b>CRM</b>}
+            { !isClicked && <b className="duration-300">CRM</b>}
           </div>
 
           {/* Main Sidebar Menu */}
