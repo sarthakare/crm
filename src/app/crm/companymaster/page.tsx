@@ -3,6 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { useButtonContext } from "@/context/ButtonContext";
 import {
   Building,
   CalendarDays,
@@ -18,48 +19,12 @@ import {
   Smartphone,
 } from "lucide-react";
 
-import { useState, useEffect } from "react";
-
 const Page = () => {
-  const [sidebarState, setSidebarState] = useState<boolean>(true); // Default to true
-
-  useEffect(() => {
-    const getSidebarState = () => {
-      const cookieValue = document.cookie
-        .split("; ")
-        .find((cookie) => cookie.startsWith("sidebar:state="));
-      if (cookieValue) {
-        const state = cookieValue.split("=")[1];
-        return state === "true"; // Convert the string value to boolean
-      }
-      return true; // Default to true if no cookie is found
-    };
-
-    // Optional: Check for changes periodically
-    const intervalId = setInterval(() => {
-      const newSidebarState = getSidebarState();
-      if (newSidebarState !== sidebarState) {
-        setSidebarState(newSidebarState);
-      }
-    }, 1000);
-
-    // Cleanup on component unmount
-    return () => clearInterval(intervalId);
-  }, [sidebarState]);
+  const {isClicked} = useButtonContext();
 
   return (
-    <main
-      className={`h-full w-full flex justify-center items-center ml-10 ${
-        sidebarState === false ? "fullscreen" : ""
-      }`}
-    >
-      <ScrollArea
-        className={`${
-          sidebarState === true
-            ? "h-[80vh] w-[75vw] transition-all duration-100"
-            : "h-[80vh] w-[90vw] transition-all duration-100"
-        }`}
-      >
+    <main className="h-full w-full flex justify-center items-center ">
+      <ScrollArea className={`h-[80vh] ${isClicked ? 'w-[90vw]' : 'w-[80vw]'} duration-300`}>
         <Card>
           <CardHeader>
             <CardTitle>Company Master</CardTitle>

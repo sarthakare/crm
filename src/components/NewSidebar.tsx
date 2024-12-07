@@ -1,6 +1,4 @@
 "use client";
-
-import React, { useState } from "react";
 import Link from "next/link";
 import { Sidebar, Menu, MenuItem, SubMenu } from "react-pro-sidebar";
 import {
@@ -12,8 +10,9 @@ import {
   SlidersVertical,
   ClipboardList,
   Contact,
-  MenuIcon,
 } from "lucide-react";
+import { useButtonContext } from "@/context/ButtonContext";
+import Image from "next/image";
 
 // Define the type for menu items
 interface MenuItemType {
@@ -24,12 +23,7 @@ interface MenuItemType {
 }
 
 const NewSidebar = () => {
-  const [collapsed, setCollapsed] = useState(false);
-
-  // Toggle sidebar collapse state
-  const toggleSidebar = () => {
-    setCollapsed(!collapsed);
-  };
+  const { isClicked } = useButtonContext();
 
   // Menu data structure
   const menuItems: MenuItemType[] = [
@@ -37,7 +31,11 @@ const NewSidebar = () => {
       title: "Dashboard",
       icon: <LayoutDashboard />,
       items: [
-        { title: "Analytics", href: "/crm/dashboard/analytics", icon: <Contact /> },
+        {
+          title: "Analytics",
+          href: "/crm/dashboard/analytics",
+          icon: <Contact />,
+        },
         {
           title: "Reports",
           items: [
@@ -117,7 +115,7 @@ const NewSidebar = () => {
           </SubMenu>
         );
       }
-  
+
       // Render as MenuItem for items without sub-items
       return (
         <MenuItem
@@ -131,32 +129,33 @@ const NewSidebar = () => {
       );
     });
   };
-  
-  
 
   return (
     <main>
-      <div className="flex flex-col h-screen w-[200px] bg-[#dfdfdf]">
+      <div
+        className="flex flex-col h-screen bg-[#dfdfdf] ${isClicked ? 'w-[80px]' : 'w-[250px]'">
         <Sidebar
           className="h-full z-[1]"
-          collapsed={collapsed}
+          width={"250px"}
+          collapsed={isClicked}
           collapsedWidth="80px"
           transitionDuration={300}
           backgroundColor={"#2e3951"}
         >
           {/* Sidebar Header */}
-          <div className=" bg-[#0275d8]">
-            <Menu>
-              <MenuItem
-                className="cursor-pointer border-none p-0 ml-0 bg-none"
-                icon={<MenuIcon />}
-                onClick={toggleSidebar}
-              />
-            </Menu>
+          <div className=" bg-[#0275d8] flex justify-center items-center pt-5 pb-5 text-white text-2xl">
+            <Image
+              src="/images/logo.png"
+              alt="logo of the website"
+              width={40}
+              height={40}
+            />
+            &nbsp;
+            { !isClicked && <b>CRM</b>}
           </div>
 
           {/* Main Sidebar Menu */}
-          <Menu>{renderMenu(menuItems)}</Menu>
+          <Menu closeOnClick={true}>{renderMenu(menuItems)}</Menu>
         </Sidebar>
       </div>
     </main>
