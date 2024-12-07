@@ -1,4 +1,5 @@
 "use client";
+import Breadcrumbs from "@/components/Breadcrumps";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -28,6 +29,7 @@ const Page = () => {
         <Card>
           <CardHeader>
             <CardTitle>Company Master</CardTitle>
+            <Breadcrumbs/>
           </CardHeader>
           <hr className="border-[#dfdfdf] border-2 mb-6" />
           <CardContent>
